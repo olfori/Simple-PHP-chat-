@@ -29,18 +29,16 @@ class Chat {
     $.ajax({
 	  data: "event=get&id="+this.last_msg_id,
       success: function(recieved_msg){
-        //Если есть сообщения в принятых данных
+        //If there are messages in the received data
         if(recieved_msg.length > 2){
-          //Парсим JSON
           var obj = JSON.parse(recieved_msg);
-          //Прогоняем циклом по всем принятым сообщениям
+          //Run the cycle through all accepted messages
           for(var i=0; i < obj.length; i ++){
-            //Присваиваем переменной ID сообщения
             _this.last_msg_id = obj[i].id;
-            //Добавляем в чат сообщение
+            //Adding a chat message
             $("#msg-box ul").append("<li><b>"+ obj[i].name + "</b>: " +obj[i].msg + "</li>");
           }
-          //Прокручиваем чат до самого конца
+          //Scroll the chat to the very end
           $("#msg-box").scrollTop(2000);
         }
       }
@@ -56,14 +54,14 @@ class Chat {
   sendMsg(){
 	var my_msg = $(".msg").val();
 	var my_nm = $(".name").val();
-	//Если сообщение не пустое
+	//If the message is not empty
 	if( my_msg != "" ){
-		//Чищу форму
+		//Cleaning the form
 		$('.msg').val('');
-		//Отправляю запрос
+		//Send a request
 		$.ajax({data: "event=set&name="+my_nm+"&msg="+my_msg});
 	}
-	//Возвращаю false, чтобы форма не отправлялась.
+	//I return false to prevent the form from being sent
 	return false;
   }
   

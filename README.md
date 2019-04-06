@@ -1,7 +1,7 @@
 # Simple-PHP-chat-
 Simple chat in PHP
 
-Прежде всего создайте таблицу в mySQL:
+First of all, create a table in mySQL:
 
 CREATE TABLE IF NOT EXISTS `chat` (
   `id` int(15) NOT NULL AUTO_INCREMENT,
